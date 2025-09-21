@@ -33,6 +33,7 @@ class UpdateProductRequest extends FormRequest
             'old_price' => 'nullable|numeric|min:0',
             'new_price' => 'required|numeric|min:0',
             'is_active' => 'nullable|boolean',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

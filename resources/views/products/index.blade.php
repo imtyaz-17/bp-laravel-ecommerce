@@ -22,6 +22,7 @@
                         <table class="table table-bordered">
                             <tr>
                                 <th class="fw-bold">No</th>
+                                <th class="fw-bold">Image</th>
                                 <th class="fw-bold">Name</th>
                                 <th class="fw-bold">Category</th>
                                 <th class="fw-bold">Subcategory</th>
@@ -32,6 +33,19 @@
                             @foreach ($products as $product)
                                 <tr>
                                     <td>{{ ++$loop->index }}</td>
+                                    <td>
+                                        @if($product->images->count() > 0)
+                                            <img src="{{ asset('storage/' . $product->images->first()->path) }}" 
+                                                 class="img-thumbnail" 
+                                                 alt="{{ $product->name }}" 
+                                                 style="width: 60px; height: 60px; object-fit: cover;">
+                                        @else
+                                            <div class="bg-light d-flex align-items-center justify-content-center" 
+                                                 style="width: 60px; height: 60px; border: 1px solid #dee2e6;">
+                                                <i class="bi bi-image text-muted"></i>
+                                            </div>
+                                        @endif
+                                    </td>
                                     <td>{{ $product->name }}</td>
                                     <td>
                                         <span class="badge bg-info">{{ $product->category->name }}</span>

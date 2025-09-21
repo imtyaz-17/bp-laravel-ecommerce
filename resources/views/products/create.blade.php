@@ -29,7 +29,7 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('products.store') }}" method="POST">
+                        <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row mb-3">
@@ -129,6 +129,21 @@
                                     </div>
 
                                     @error('new_price')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="images" class="col-md-4 col-form-label text-md-end">Product Images</label>
+
+                                <div class="col-md-6">
+                                    <input id="images" type="file" class="form-control @error('images.*') is-invalid @enderror" name="images[]" multiple accept="image/*">
+                                    <div class="form-text">You can select multiple images. Supported formats: JPEG, PNG, JPG, GIF, SVG. Max size: 2MB per image.</div>
+
+                                    @error('images.*')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

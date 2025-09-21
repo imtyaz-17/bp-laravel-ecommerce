@@ -115,12 +115,39 @@
                                     <strong>Images:</strong>
                                 </div>
                                 <div class="col-md-8">
-                                    <div class="row">
+                                    <div class="row g-3">
                                         @foreach($product->images as $image)
-                                            <div class="col-md-4 mb-2">
-                                                <img src="{{ asset($image->path) }}" class="img-thumbnail" alt="Product Image">
+                                            <div class="col-md-4 col-sm-6">
+                                                <div class="position-relative">
+                                                    <img src="{{ asset('storage/' . $image->path) }}" 
+                                                         class="img-fluid rounded shadow-sm" 
+                                                         alt="Product Image" 
+                                                         style="width: 100%; height: 200px; object-fit: cover; border: 1px solid #dee2e6;">
+                                                    <form action="{{ route('products.images.destroy', [$product->id, $image->id]) }}" method="POST" class="position-absolute top-0 end-0 m-2">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" 
+                                                                class="btn btn-danger btn-sm rounded-circle" 
+                                                                onclick="return confirm('Are you sure you want to delete this image?')" 
+                                                                title="Delete Image"
+                                                                style="width: 32px; height: 32px; padding: 0; display: flex; align-items: center; justify-content: center;">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <strong>Images:</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="alert alert-info">
+                                        <i class="bi bi-image me-2"></i>No images uploaded for this product.
                                     </div>
                                 </div>
                             </div>

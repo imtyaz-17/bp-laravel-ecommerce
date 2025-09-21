@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Product;
 use App\Models\Subcategory;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -21,7 +24,7 @@ class ProductController extends Controller
      */
     public function index(): Factory|View|Application
     {
-        $products = Product::with(['category', 'subcategory'])->paginate(10);
+        $products = Product::with(['category', 'subcategory', 'images'])->paginate(10);
         return view('products.index', compact('products'));
     }
 
@@ -46,7 +49,15 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request): RedirectResponse
     {
         
-        Product::create($request->validated());
+        $product = Product::create($request->validated());
+        // Handle image uploads
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('products', 'public');
+                $product->images()->create(['path' => $path]);
+            }
+        }
+        
         return redirect()->route('products.index')->with('success', 'Product created successfully');
     }
 
@@ -83,9 +94,16 @@ class ProductController extends Controller
      * @return RedirectResponse
      */
     public function update(UpdateProductRequest $request, Product $product): RedirectResponse
-    {
-    
-        $product->update( $request->validated());
+    {  
+        $product->update($request->validated());
+        // Handle image uploads
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('products', 'public');
+                $product->images()->create(['path' => $path]);
+            }
+        }
+        
         return redirect()->route('products.index')->with('success', 'Product updated successfully');
     }
 
@@ -97,7 +115,36 @@ class ProductController extends Controller
      */
     public function destroy(Product $product): RedirectResponse
     {
+        // Delete associated images
+        foreach ($product->images as $image) {
+            Storage::disk('public')->delete($image->path);
+            $image->delete();
+        }
+        
         $product->delete();
         return redirect()->route('products.index')->with('success', 'Product deleted successfully');
+    }
+
+    /**
+     * Delete a specific product image.
+     *
+     * @param  Product  $product
+     * @param  Image  $image
+     * @return RedirectResponse
+     */
+    public function deleteImage(Product $product, Image $image): RedirectResponse
+    {
+        // Verify the image belongs to the product
+        if ($image->imageable_id !== $product->id || $image->imageable_type !== Product::class) {
+            abort(404, 'Image not found for this product');
+        }
+        
+        // Delete file from storage
+        Storage::disk('public')->delete($image->path);
+        
+        // Delete image record
+        $image->delete();
+        
+        return redirect()->back()->with('success', 'Image deleted successfully');
     }
 }

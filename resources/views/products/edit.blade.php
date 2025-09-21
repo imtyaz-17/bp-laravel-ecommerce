@@ -29,7 +29,7 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('products.update', $product->id) }}" method="POST">
+                        <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
@@ -138,6 +138,48 @@
                             </div>
 
                             <div class="row mb-3">
+                                <label for="images" class="col-md-4 col-form-label text-md-end">Add More Images</label>
+
+                                <div class="col-md-6">
+                                    <input id="images" type="file" class="form-control @error('images.*') is-invalid @enderror" name="images[]" multiple accept="image/*">
+                                    <div class="form-text">You can select multiple images. Supported formats: JPEG, PNG, JPG, GIF, SVG. Max size: 2MB per image.</div>
+
+                                    @error('images.*')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            @if($product->images->count() > 0)
+                                <div class="row mb-3">
+                                    <label class="col-md-4 col-form-label text-md-end">Current Images</label>
+                                    <div class="col-md-8">
+                                        <div class="row g-3">
+                                            @foreach($product->images as $image)
+                                                <div class="col-md-4 col-sm-6">
+                                                    <div class="position-relative">
+                                                        <img src="{{ asset('storage/' . $image->path) }}" 
+                                                             class="img-fluid rounded shadow-sm" 
+                                                             alt="Product Image" 
+                                                             style="width: 100%; height: 150px; object-fit: cover; border: 1px solid #dee2e6;">
+                                                        <button type="button" 
+                                                                class="btn btn-danger btn-sm rounded-circle position-absolute top-0 end-0 m-2" 
+                                                                onclick="if(confirm('Are you sure you want to delete this image?')) { document.getElementById('delete-form-{{ $image->id }}').submit(); }" 
+                                                                title="Delete Image"
+                                                                style="width: 32px; height: 32px; padding: 0; display: flex; align-items: center; justify-content: center;">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                            <div class="row mb-3">
                                 <div class="col-md-6 offset-md-4">
                                     <div class="form-check">
                                         <input type="hidden" name="is_active" value="0">
@@ -167,4 +209,14 @@
             </div>
         </div>
     </div>
+
+    <!-- Hidden forms for image deletion (outside main form to prevent conflicts) -->
+    @if($product->images->count() > 0)
+        @foreach($product->images as $image)
+            <form id="delete-form-{{ $image->id }}" action="{{ route('products.images.destroy', [$product->id, $image->id]) }}" method="POST" style="display: none;">
+                @csrf
+                @method('DELETE')
+            </form>
+        @endforeach
+    @endif
 @endsection

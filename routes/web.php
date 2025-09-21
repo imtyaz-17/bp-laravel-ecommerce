@@ -28,3 +28,4 @@ Route::resource('subcategories', SubcategoryController::class);
 
 // Products routes
 Route::resource('products', ProductController::class);
+Route::delete('products/{product}/images/{image}', [ProductController::class, 'deleteImage'])->name('products.images.destroy');

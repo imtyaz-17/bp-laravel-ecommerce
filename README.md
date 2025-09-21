@@ -20,18 +20,24 @@ A simplified e-commerce platform built with Laravel 8, featuring CRUD operations
 
 ## Quick Start
 
-1. **Environment Setup**
+1. **Install Dependencies**
+   ```bash
+   composer install
+   npm install
+   ```
+
+2. **Environment Setup**
    ```bash
    cp .env.example .env
    php artisan key:generate
    ```
 
-2. **Database Setup**
+3. **Database Setup**
    ```bash
    php artisan migrate
    ```
 
-3. **Start Server**
+4. **Start Server**
    ```bash
    php artisan serve
    ```

@@ -20,16 +20,19 @@
                         @endif
 
                         <table class="table table-bordered">
-                            <tr>
-                                <th class="fw-bold">No</th>
-                                <th class="fw-bold">Image</th>
-                                <th class="fw-bold">Name</th>
-                                <th class="fw-bold">Category</th>
-                                <th class="fw-bold">Subcategory</th>
-                                <th class="fw-bold">Price</th>
-                                <th class="fw-bold">Status</th>
-                                <th class="fw-bold" width="280px">Action</th>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <th class="fw-bold">No</th>
+                                    <th class="fw-bold">Image</th>
+                                    <th class="fw-bold">Name</th>
+                                    <th class="fw-bold">Category</th>
+                                    <th class="fw-bold">Subcategory</th>
+                                    <th class="fw-bold">Price</th>
+                                    <th class="fw-bold">Status</th>
+                                    <th class="fw-bold" width="280px">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                             @foreach ($products as $product)
                                 <tr>
                                     <td>{{ ++$loop->index }}</td>
@@ -93,6 +96,7 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            </tbody>
                         </table>
 
                         {{ $products->links() }}

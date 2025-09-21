@@ -140,14 +140,23 @@ img {
 }
 
 /* Table styling */
-.table th.fw-bold {
-    font-weight: 700 !important;
+.table th {
+    font-weight: 600;
     background-color: #f8f9fa;
     border-bottom: 2px solid #dee2e6;
     color: #495057;
     font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    padding: 0.75rem;
+}
+
+/* Table styling - using Bootstrap classes */
+.table th {
+    background-color: #e9ecef;
+    border-bottom: 2px solid #dee2e6;
+    color: #495057;
+    font-size: 0.9rem;
+    padding: 0.75rem;
+    font-weight: 600;
 }
 
 .table td {

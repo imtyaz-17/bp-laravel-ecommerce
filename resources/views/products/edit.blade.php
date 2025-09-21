@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <span>Edit Product</span>
-                        <a href="{{ route('products.index') }}" class="btn btn-outline-secondary btn-sm">
+                        <a href="{{ route('products.index') }}" class="btn btn-outline-warning btn-sm">
                             <i class="bi bi-arrow-left"></i> Back
                         </a>
                     </div>

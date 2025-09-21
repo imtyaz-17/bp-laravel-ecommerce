@@ -75,16 +75,6 @@
             border-radius: 10px;
             overflow: hidden;
         }
-        .table thead th {
-            background: #f8f9fa;
-            border: none;
-            font-weight: 600;
-            color: #495057;
-        }
-        .badge {
-            font-size: 0.75rem;
-            padding: 0.5em 0.75em;
-        }
         .alert {
             border: none;
             border-radius: 10px;
@@ -97,9 +87,6 @@
         .form-control:focus, .form-select:focus {
             border-color: #667eea;
             box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
-        }
-        .pagination {
-            justify-content: center;
         }
         .page-link {
             border-radius: 8px;

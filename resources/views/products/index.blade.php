@@ -55,18 +55,17 @@
                                         </td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <i class="bi bi-box-seam me-2 text-warning"></i>
                                                 <strong>{{ $product->name }}</strong>
                                             </div>
                                         </td>
                                         <td>
                                             <span class="badge bg-info">
-                                                <i class="bi bi-grid me-1"></i>{{ $product->category->name }}
+                                                {{ $product->category->name }}
                                             </span>
                                         </td>
                                         <td>
                                             <span class="badge bg-secondary">
-                                                <i class="bi bi-collection me-1"></i>{{ $product->subcategory->name }}
+                                                {{ $product->subcategory->name }}
                                             </span>
                                         </td>
                                         <td>

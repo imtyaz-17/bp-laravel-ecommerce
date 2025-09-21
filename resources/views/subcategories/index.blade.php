@@ -41,18 +41,17 @@
                                         <td>{{ $loop->iteration + ($subcategories->currentPage() - 1) * $subcategories->perPage() }}</td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <i class="bi bi-collection me-2 text-success"></i>
                                                 <strong>{{ $subcategory->name }}</strong>
                                             </div>
                                         </td>
                                         <td>
                                             <span class="badge bg-info">
-                                                <i class="bi bi-grid me-1"></i>{{ $subcategory->category->name }}
+                                                {{ $subcategory->category->name }}
                                             </span>
                                         </td>
                                         <td>{{ $subcategory->description ? Str::limit($subcategory->description, 50) : 'No description' }}</td>
                                         <td>
-                                            <span class="badge bg-warning">{{ $subcategory->products->count() }} products</span>
+                                            <span class="badge bg-warning">{{ $subcategory->products->count() }}</span>
                                         </td>
                                         <td>
                                             @if($subcategory->is_active)

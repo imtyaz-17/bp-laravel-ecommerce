@@ -4,30 +4,83 @@ body {
     font-family: 'Nunito', sans-serif;
 }
 
-.navbar-brand {
-    font-weight: bold;
-}
-
+/* Card styling */
 .card {
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
     border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
-.card-header {
-    background-color: #f8f9fa;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-    font-weight: 600;
-}
-
+/* Table styling - consolidated */
 .table th {
     background-color: #f8f9fa;
-    font-weight: 600;
+    font-weight: 700;
+    border-bottom: 2px solid #dee2e6;
+    color: #0d6efd;
+    font-size: 0.9rem;
+    padding: 0.75rem;
 }
 
+.table td {
+    vertical-align: middle;
+    padding: 0.75rem;
+}
+
+/* Table row hover effect */
+.table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Button styling - consolidated */
 .btn {
     border-radius: 0.375rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Small buttons in tables */
+.table .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 0.25rem;
+    min-width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Button hover effects for table actions */
+.table .btn-outline-primary:hover {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: white;
+}
+
+.table .btn-outline-warning:hover {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #000;
+}
+
+.table .btn-outline-danger:hover {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+}
+
+/* Badge styling */
 .badge {
     font-size: 0.75em;
 }
@@ -53,75 +106,17 @@ img {
     justify-content: center;
 }
 
-/* Custom spacing */
-.mb-4 {
-    margin-bottom: 1.5rem !important;
+/* Gap utilities - only if not using Bootstrap 5 */
+.d-flex.gap-1 {
+    gap: 0.25rem !important;
 }
 
-/* Status badges */
-.bg-success {
-    background-color: #198754 !important;
-}
-
-.bg-danger {
-    background-color: #dc3545 !important;
-}
-
-/* Action buttons */
-.btn-group .btn {
-    margin-right: 2px;
-}
-
-.btn-group .btn:last-child {
-    margin-right: 0;
-}
-
-/* Icon buttons */
-.btn i {
-    font-size: 0.9em;
-}
-
-/* Hover effects */
-.btn-outline-primary:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(13, 110, 253, 0.3);
-}
-
-.btn-outline-warning:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(255, 193, 7, 0.3);
-}
-
-.btn-outline-danger:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
-}
-
-/* Button spacing and styling */
 .d-flex.gap-2 {
     gap: 0.5rem !important;
 }
 
 .d-flex.gap-3 {
     gap: 1rem !important;
-}
-
-.btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    border-radius: 0.375rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.btn:active {
-    transform: translateY(0);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* Icon spacing in buttons */
@@ -133,113 +128,9 @@ img {
     margin-right: 0.5rem;
 }
 
-/* Action buttons in show page */
-.d-flex.gap-2 .btn {
-    min-width: 80px;
-    text-align: center;
-}
-
-/* Table styling */
-.table th {
-    font-weight: 600;
-    background-color: #f8f9fa;
-    border-bottom: 2px solid #dee2e6;
-    color: #495057;
-    font-size: 0.9rem;
-    padding: 0.75rem;
-}
-
-/* Table styling - using Bootstrap classes */
-.table th {
-    background-color: #e9ecef;
-    border-bottom: 2px solid #dee2e6;
-    color: #495057;
-    font-size: 0.9rem;
-    padding: 0.75rem;
-    font-weight: 600;
-}
-
-.table td {
-    vertical-align: middle;
-    padding: 0.75rem;
-}
-
-/* Action buttons in table */
-.table .d-flex.gap-1 {
-    gap: 0.25rem !important;
-}
-
-.table .d-flex.gap-2 {
-    gap: 0.5rem !important;
-}
-
-.table .btn-sm {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.75rem;
-    border-radius: 0.25rem;
-    border-width: 1px;
-    transition: all 0.2s ease;
-    min-width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.table .btn-sm:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.table .btn-outline-primary:hover {
-    background-color: #0d6efd;
-    border-color: #0d6efd;
-    color: white;
-}
-
-.table .btn-outline-warning:hover {
-    background-color: #ffc107;
-    border-color: #ffc107;
-    color: #000;
-}
-
-.table .btn-outline-danger:hover {
-    background-color: #dc3545;
-    border-color: #dc3545;
-    color: white;
-}
-
-/* Table row hover effect */
-.table tbody tr:hover {
-    background-color: #f8f9fa;
-}
-
 /* Action column styling */
 .table th:last-child,
 .table td:last-child {
     text-align: center;
     width: 200px;
 }
-
-/* Form buttons */
-.d-flex.gap-3 .btn-primary {
-    background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
-    border: none;
-}
-
-.d-flex.gap-3 .btn-secondary {
-    background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
-    border: none;
-}
-
-.d-flex.gap-3 .btn-warning {
-    background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
-    border: none;
-    color: #000;
-}
-
-.d-flex.gap-3 .btn-danger {
-    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
-    border: none;
-}
-

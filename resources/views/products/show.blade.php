@@ -1,18 +1,20 @@
 @extends('layouts.app')
 
-@section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <span>Product Details</span>
-                        <a href="{{ route('products.index') }}" class="btn btn-outline-secondary btn-sm">
-                            <i class="bi bi-arrow-left"></i> Back
-                        </a>
-                    </div>
+@section('title', 'Product Details')
+@section('page-title', 'Product Details')
+@section('page-description', 'View detailed information about this product')
 
-                    <div class="card-body">
+@section('page-actions')
+    <a href="{{ route('products.index') }}" class="btn btn-outline-light btn-custom">
+        <i class="bi bi-arrow-left me-2"></i>Back
+    </a>
+@endsection
+
+@section('content')
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body p-4">
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <strong>Product Name:</strong>
@@ -153,20 +155,19 @@
                             </div>
                         @endif
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="d-flex gap-2 justify-content-center">
-                                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning px-3">
-                                        <i class="bi bi-pencil me-1"></i> Edit
-                                    </a>
-                                    <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger px-3" onclick="return confirm('Are you sure you want to delete this product?')">
-                                            <i class="bi bi-trash me-1"></i> Delete
-                                        </button>
-                                    </form>
-                                </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex gap-3 justify-content-center">
+                                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning btn-custom px-4">
+                                    <i class="bi bi-pencil me-2"></i>Edit
+                                </a>
+                                <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-custom px-4" onclick="return confirm('Are you sure you want to delete this product?')">
+                                        <i class="bi bi-trash me-2"></i>Delete
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
